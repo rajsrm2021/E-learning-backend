@@ -32,8 +32,9 @@ export const buySubscription = CatchAsyncError(async (req, res, next) => {
 });
 
 export const paymentVerification = CatchAsyncError(async (req, res, next) => {
-  const { razorpay_payment_id, razorpay_subscription_id, razorpay_signature } =
+  const { razorpay_signature, razorpay_payment_id, razorpay_subscription_id } =
     req.body;
+
   const user = await User.findById(req.user._id);
 
   const subscription_id = user.subscription.id;
@@ -43,13 +44,13 @@ export const paymentVerification = CatchAsyncError(async (req, res, next) => {
     .update(razorpay_payment_id + "|" + subscription_id, "utf-8")
     .digest("hex");
 
-  const isAuthenticat = generated_signature === razorpay_signature;
+  const isAuthentic = generated_signature === razorpay_signature;
 
-  if (!isAuthenticat)
-    return res.redirect(`${process.env.FONTEND_URL}/paymentfail`);
+  if (!isAuthentic)
+    return res.redirect(`${process.env.FRONTEND_URL}/paymentfail`);
 
   // database comes here
-  await PaymentMethodChangeEvent.create({
+  await Payment.create({
     razorpay_signature,
     razorpay_payment_id,
     razorpay_subscription_id,
@@ -60,7 +61,7 @@ export const paymentVerification = CatchAsyncError(async (req, res, next) => {
   await user.save();
 
   res.redirect(
-    `${process.env.FONTEND_URL}/paymentsucess?refrence=${razorpay_payment_id}`
+    `${process.env.FRONTEND_URL}/paymentsuccess?reference=${razorpay_payment_id}`
   );
 });
 
