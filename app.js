@@ -11,7 +11,8 @@ config({
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:3000", // Replace with the origin(s) you want to allow
+    // origin: "http://localhost:3000", // Replace with the origin(s) you want to allow
+    origin: "https://e-learning-frontend-virid.vercel.app/", // Replace with the origin(s) you want to allow
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true, // Allow cookies and authentication headers
   })
@@ -55,8 +56,8 @@ export default app;
 // );
 
 app.get("/", (req, res) => {
-  const frontendURL = "http://localhost:3000";
-  // const frontendURL = "https://e-learning-frontend-virid.vercel.app/";
+  // const frontendURL = "http://localhost:3000";
+  const frontendURL = "https://e-learning-frontend-virid.vercel.app/";
 
   res.send(
     `<div style="display: flex; align-items: center; justify-content: center; text-align: center;">
