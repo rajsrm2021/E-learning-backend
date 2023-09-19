@@ -12,7 +12,7 @@ const app = express();
 app.use(
   cors({
     // origin: "http://localhost:3000", // Replace with the origin(s) you want to allow
-    origin: "https://e-learning-frontend-virid.vercel.app/", // Replace with the origin(s) you want to allow
+    origin: "https://e-learning-frontend-virid.vercel.app", // Replace with the origin(s) you want to allow
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true, // Allow cookies and authentication headers
   })
