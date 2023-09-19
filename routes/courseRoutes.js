@@ -22,7 +22,7 @@ router
 
 // Add lecture , delete course , get course details
 router
-  .route("/courses/:id")
+  .route("/course/:id")
   .get(isAuthenticated,authorizeSubscribers,getCourseLectures)
   .post(isAuthenticated,authorizeAdmin,singleUpload, addLecture)// authorizeAdmin bug , fixed on 23/07/2023
   .delete(isAuthenticated,authorizeAdmin,deleteCourse); 

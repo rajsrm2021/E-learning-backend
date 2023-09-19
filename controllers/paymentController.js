@@ -60,8 +60,11 @@ export const paymentVerification = CatchAsyncError(async (req, res, next) => {
 
   await user.save();
 
+  const frontendURL = "http://localhost:3000";
+
   res.redirect(
-    `${process.env.FRONTEND_URL}/paymentsuccess?reference=${razorpay_payment_id}`
+    // `${process.env.FRONTEND_URL}/paymentsuccess?reference=${razorpay_payment_id}`
+    `${frontendURL}/paymentsuccess?reference=${razorpay_payment_id}`
   );
 });
 
