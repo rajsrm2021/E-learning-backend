@@ -28,7 +28,7 @@ const schema = new mongoose.Schema({
   role: {
     type: String,
     enum: ["admin", "user"], // enum means only two options are allowed
-    default: "admin",
+    default: "user",
   },
 
   // Subscription id, status
